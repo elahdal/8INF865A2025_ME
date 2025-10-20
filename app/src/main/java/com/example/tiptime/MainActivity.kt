@@ -26,7 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.example.tiptime.ui.theme.TipTimeTheme
 import java.text.NumberFormat
 import androidx.compose.material3.TextField
-
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
 
 
@@ -49,9 +50,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun EditNumberField(modifier: Modifier = Modifier) {
+    val amountInput = remember { mutableStateOf("0") }
     TextField(
-        value = "",
-        onValueChange = {},
+        value = amountInput.value,
+        onValueChange = { newValue ->
+            amountInput.value = newValue
+        },
         modifier = modifier
     )
 }
