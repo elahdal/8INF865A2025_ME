@@ -28,7 +28,10 @@ import java.text.NumberFormat
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
 
 
 class MainActivity : ComponentActivity() {
@@ -50,12 +53,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun EditNumberField(modifier: Modifier = Modifier) {
-    val amountInput = remember { mutableStateOf("0") }
+    var amountInput by remember { mutableStateOf("") }
     TextField(
-        value = amountInput.value,
-        onValueChange = { newValue ->
-            amountInput.value = newValue
-        },
+        value = amountInput,
+        onValueChange = { amountInput = it },
         modifier = modifier
     )
 }
