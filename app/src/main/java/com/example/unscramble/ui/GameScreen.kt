@@ -118,6 +118,12 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
                 )
             }
         }
+        if (gameUiState.isGameOver) {
+            FinalScoreDialog(
+                score = gameUiState.score,
+                onPlayAgain = { gameViewModel.resetGame() }
+            )
+        }
 
         GameStatus(score = gameUiState.score, modifier = Modifier.padding(20.dp))    }
 }
@@ -207,20 +213,12 @@ private fun FinalScoreDialog(
     val activity = (LocalContext.current as Activity)
 
     AlertDialog(
-        onDismissRequest = {
-            // Dismiss the dialog when the user clicks outside the dialog or on the back
-            // button. If you want to disable that functionality, simply use an empty
-            // onCloseRequest.
-        },
+        onDismissRequest = { },
         title = { Text(text = stringResource(R.string.congratulations)) },
         text = { Text(text = stringResource(R.string.you_scored, score)) },
         modifier = modifier,
         dismissButton = {
-            TextButton(
-                onClick = {
-                    activity.finish()
-                }
-            ) {
+            TextButton(onClick = { activity.finish() }) {
                 Text(text = stringResource(R.string.exit))
             }
         },
