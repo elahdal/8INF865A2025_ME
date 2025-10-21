@@ -113,7 +113,8 @@ fun SelectOptionScreen(
             Button(
                 modifier = Modifier.weight(1f),
                 enabled = selectedValue.isNotEmpty(),
-                onClick = onCancelButtonClicked            ) {
+                onClick = onNextButtonClicked
+            ) {
                 Text(stringResource(R.string.next))
             }
         }
